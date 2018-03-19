@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <time.h>
 using namespace std;
 
 string oneline(char a, string str);
@@ -106,10 +107,15 @@ string minus0(string str)
 }
 int main()
 {
-	string s1 = "123456789123456789";
-	string s2 = "123456789123456789";
+	clock_t start_time, end_time;
+	start_time = clock();
+	string s1 = "1234567812345678";
+	string s2 = "1234567812345678";
 	string result;
 	result = minus0(multiply(s1,s2));
 	cout << "result::" << result << endl;
+	end_time = clock();
+	cout << "total time:" << (double)(end_time - start_time) << endl;
+	return 0;
 }
 
