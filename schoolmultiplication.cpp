@@ -109,8 +109,8 @@ int main()
 {
 	clock_t start_time, end_time;
 	start_time = clock();
-	string s1 = "1234567812345678";
-	string s2 = "1234567812345678";
+	string s1 = "12345678901234567890";
+	string s2 = "12345678901234567890";
 	string result;
 	result = minus0(multiply(s1,s2));
 	cout << "result::" << result << endl;

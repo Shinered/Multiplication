@@ -13,6 +13,7 @@ string invertstring(string str);
 int Max(int x, int y);
 string easymul(string s1, string s2);
 int str2num(string s);
+string minus0(string str);
 string num2str(int i);
 /*----------数字转字符串--------*/
 string num2str(int i)
@@ -81,13 +82,36 @@ string addstring(string s1, string s2)
 	}
 	return result; //需要倒序
 }
+string minus0(string str)
+{
+	int zeros = 0;
+	string result;
+	for(int i = 0; i < str.size(); i++)
+	{
+		if(str[i] != '0')
+		{
+			zeros = i;
+			break;
+		}
+	}
+	result = str.substr(zeros);
+	return result;
+}
 /*---------递归乘法-----------*/
 string karatsuba(string s1, string s2)
 {
 	int size1 = s1.size();
 	int size2 = s2.size();
 	int max = Max(size1, size2);
-	int half = max / 2;
+	int half;
+	if(max % 2 == 0)
+	{
+		half = max / 2;
+	} else {
+		half = max / 2;
+		
+	}
+
 	string a, b, c , d;
 	string ac, bd, bc, ad;
 	string result, temp1, temp2, temp3;
@@ -108,8 +132,8 @@ string karatsuba(string s1, string s2)
 	bd = karatsuba(b,d);
 	bc = karatsuba(b,c);
 	ad = karatsuba(a,d);
-	temp1 = ac + string(max, '0');	
-	temp2 = invertstring(addstring(bc, ad)) + string(half,'0');
+	temp1 = ac + string((max - half) * 2, '0');
+	temp2 = invertstring(addstring(bc, ad)) + string(max - half,'0');
 	temp3 = invertstring(addstring(temp1, temp2));
 	result = invertstring(addstring(temp3, bd));
 	return result;
@@ -118,9 +142,9 @@ int main()
 {
 	clock_t start_time, end_time;
 	start_time = clock();
-	string s1 = "1234567812345678";
-	string s2 = "1234567812345678";
-	cout << karatsuba(s1,s2) << endl;
+	string s1 = "12345678901234567890";
+	string s2 = "12345678901234567890";
+	cout << minus0(karatsuba(s1,s2)) << endl;
 	end_time = clock();
 	cout << "total time:" << (double)(end_time - start_time) << endl;
 
