@@ -1,2 +1,1 @@
-Git is a version control system.
-Git is free software.
+calculate the numbers of inversion
